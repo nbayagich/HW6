@@ -29,7 +29,7 @@ public interface ScoreDao {
     @Query("SELECT * FROM scores ORDER BY score ASC")
     LiveData<List<Score>> getAllScores();
 
-    @Query("SELECT * FROM scores ORDER BY score ASC")
-    List<Player> getTopPlayers();
+    @Query("select pid from scores group by pid, first_name, last_name order by sum(score * weight) desc")
+    List<Integer> getTopPlayers();
 
 }

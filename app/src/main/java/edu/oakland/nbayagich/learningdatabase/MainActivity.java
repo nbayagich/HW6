@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Get Query for top 5 players
+                Player player = null;
                 ArrayList<String> topPlayers = new ArrayList<>();
-                List<Player> players = GameDatabase.getInstance(v.getContext()).scoreDao().getTopPlayers();
-                for(Player player : players)
+                List<Integer> players = GameDatabase.getInstance(v.getContext()).scoreDao().getTopPlayers();
+                for(Integer playerID : players)
                 {
+                    player = GameDatabase.getInstance(v.getContext()).playerDao().findPlayerById(playerID);
                     topPlayers.add(player.toString());
                 }
 
